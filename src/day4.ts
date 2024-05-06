@@ -30,28 +30,39 @@ Explicación: Cada nodo tiene un valor 1, por lo que no se eliminan nodos.
         }
 }
 
-function removeNodes(head: ListNode | null): ListNode | null {
-    if (!head) return null
 
-    let current = head //apunta al nodo actual durante el recorrido de la lista
-    let maxNode = null // apunta al nodo más grande hasta el momento en el lado derecho de la lista
+function removeNodes(head:ListNode | null): ListNode | null {
+    //Se inicializa un stack (pila) vacío para almacenar los valores de los nodos
+    const stack: number[] = []
 
-    while (current) { //recorremos la lista hasta que llegue al final
-        if (!maxNode || current.val > maxNode.val) { // Si maxNode es null o el valor actual es mayor que el valor de maxNode
-            maxNode = current // Actualiza maxNode con el nodo actual
-        } else { // Si el valor actual no es mayor que el valor de maxNode
-            let temp = current
-            
-            //Recorre todos los nodos a la derecha de current hasta encontrar un nodo 
-            //cuyo valor sea mayor o igual que el valor de maxNode
-            while (temp.next !== null && temp.next.val < maxNode.val) { 
-                temp = temp.next; // Avanza al siguiente nodo
-            }
-            // Elimina todos los nodos a la derecha de current cuyo valor sea menor que el valor de maxNode
-            current.next = temp.next
+    // Se agrega el valor del primer nodo al stack
+    stack.push(head.val)
+
+    head = head.next; // Se avanza al siguiente nodo
+
+    while (head) {
+        // mantener el stack en orden no-decreciente
+        //Si el valor del nodo actual es mayor que el de la cima(ultimo elemento) del 
+        //stack se elimina el elemento superior del stack (stack.pop()) hasta que se cumpla la condición.
+        while (stack.length && head.val > stack[stack.length - 1]) {
+            stack.pop()
         }
-        current = current.next // avanza al siguiente nodo
+
+        //Se agrega el valor del nodo actual al stack
+        stack.push(head.val)
+
+        // se avanza al siguiente nodo
+        head = head.next
     }
 
-    return head
-};
+    //Construcción de la nueva lista vinculada a partir del stack
+    let res: ListNode; // Variable para almacenar el nodo cabeza de la nueva lista vinculada
+
+    while (stack.length) {
+        //Se crea un nuevo nodo con el valor extraído y el nodo res como su next
+        let newHead = new ListNode(stack.pop(), res)
+        res = newHead //Se actualiza res para que apunte al nuevo nodo creado
+    }
+
+    return res
+}
