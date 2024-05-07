@@ -22,7 +22,7 @@ Explicación: Lee 01 de derecha a izquierda. Por lo tanto, no es un palíndromo.
 
 function isPalindrome(x: number): boolean {
     const str = x.toString() //convertir el numero a cadena
-    const reverseStr = str.split('').reverse().join() //revertir la cadena
+    const reverseStr = str.split('').reverse().join('') //revertir la cadena
     // Comparar la cadena original con su reverso
     return str === reverseStr
 };
