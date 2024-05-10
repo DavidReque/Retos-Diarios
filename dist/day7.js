@@ -1,6 +1,4 @@
 /*
-dificultad mediana
-
 Se le da una matriz entera ordenada arr conteniendo 1 y primo números, donde todos los enteros de arr son únicos. También se le da un número entero k.
 
 Para cada i y j donde 0 <= i < j < arr.length, consideramos la fracción arr[i] / arr[j].
@@ -30,23 +28,21 @@ Todos los números de arr son único y ordenado estrictamente aumentando orden.
 
 Seguimiento: Puede resolver el problema con mejor que complejidad?O(n2)
 */
-
-function kthSmallestPrimeFraction(arr: number[], k: number): number[] {
+function kthSmallestPrimeFraction(arr, k) {
     // matriz para almacenar las fracciones generadas
-    const fractions: number[][] = []
-
+    const fractions = [];
     // generar fracciones
     for (let i = 0; i < arr.length; i++) {
         for (let j = 0; j < arr.length; j++) {
             // Generar la fracción arr[i] / arr[j] y almacenarla en la matriz de fracciones
-            fractions.push([arr[i], arr[j]])
+            fractions.push([arr[i], arr[j]]);
         }
     }
-
     //Ordenar fracciones en orden ascendente
-    fractions.sort((a, b) => (a[0] / a[1] - b[0] / b[1]))
-
-    return fractions[k - 1]
-};
-
-console.log(kthSmallestPrimeFraction([1,2,3,5], 3));
+    fractions.sort((a, b) => (a[0] / a[1] - b[0] / b[1]));
+    return fractions[k - 1];
+}
+;
+console.log(kthSmallestPrimeFraction([1, 2, 3, 5], 3));
+export {};
+//# sourceMappingURL=day7.js.map
