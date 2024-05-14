@@ -31,56 +31,46 @@ Explicación:
 Camino para obtener el máximo de oro, 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7.
  
  */
-
-function getMaximumGold(grid: number[][]): number {
-    let maxGold = 0 //Inicializamos la cantidad máxima de oro recolectado
-
+function getMaximumGold(grid) {
+    let maxGold = 0; //Inicializamos la cantidad máxima de oro recolectado
     // Función de búsqueda en profundidad (DFS) para explorar todas las posibles rutas
-    function dfs(row:number, col: number, currentGold: number) {
+    function dfs(row, col, currentGold) {
         // Verificamos si estamos dentro de los límites de la cuadrícula y si la celda actual tiene oro
         if (row < 0 || row >= grid.length || col < 0 || col >= grid[0].length || grid[row][col] === 0) {
-            return
+            return;
         }
-
         // Recolectamos el oro de la celda actual
-        currentGold += grid[row][col]
+        currentGold += grid[row][col];
         console.log("current gold " + currentGold);
-
         //Guardamos el máximo oro recolectado hasta el momento
-        maxGold = Math.max(maxGold, currentGold)
+        maxGold = Math.max(maxGold, currentGold);
         console.log("oro máximo ", maxGold);
-
         // Marcamos la celda actual como visitada para evitar visitarla nuevamente
-        const temp = grid[row][col]
-        grid[row][col] = 0
-
+        const temp = grid[row][col];
+        grid[row][col] = 0;
         // Exploramos las cuatro direcciones posibles: arriba, abajo, izquierda, derecha
-        dfs(row + 1, col, currentGold)
-        dfs(row - 1, col, currentGold)
-        dfs(row, col + 1, currentGold)
-        dfs(row, col - 1, currentGold)
-
+        dfs(row + 1, col, currentGold);
+        dfs(row - 1, col, currentGold);
+        dfs(row, col + 1, currentGold);
+        dfs(row, col - 1, currentGold);
         // Restauramos el valor de la celda actual después de la exploración
-        grid[row][col] = temp
+        grid[row][col] = temp;
     }
-
     // Recorremos toda la cuadrícula y llamamos a la función dfs desde cada celda que tiene oro
-
     for (let i = 0; i < grid.length; i++) {
         for (let j = 0; j < grid[0].length; j++) {
             if (grid[i][j] !== 0) {
-                dfs(i, j, 0)
+                dfs(i, j, 0);
             }
         }
-        
     }
-
-    return maxGold 
-};
-
-const grid = [[0,6,0],[5,8,7],[0,9,0]]
-for (let i = 0; i < grid.length; i++) {
-    console.log(grid[i]);   
+    return maxGold;
 }
-
+;
+const grid = [[0, 6, 0], [5, 8, 7], [0, 9, 0]];
+for (let i = 0; i < grid.length; i++) {
+    console.log(grid[i]);
+}
 console.log(getMaximumGold(grid));
+export {};
+//# sourceMappingURL=day8-2.js.map

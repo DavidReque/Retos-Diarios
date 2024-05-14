@@ -1,4 +1,6 @@
 /*
+dificultad mediana
+
 Se le da una matriz entera ordenada arr conteniendo 1 y primo números, donde todos los enteros de arr son únicos. También se le da un número entero k.
 
 Para cada i y j donde 0 <= i < j < arr.length, consideramos la fracción arr[i] / arr[j].
