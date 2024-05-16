@@ -76,5 +76,5 @@ root1.right.right = TreeNode(1)
 root2 = TreeNode(0)
 
 # Evaluamos el árbol y mostramos el resultado
-print(evaluateTree(root1))  #imprime True por el or (true or false) = true
-print(evaluateTree(root2))  #imprime False porque 0 es false
+print(Solution.evaluateTree(root1))  #imprime True por el or (true or false) = true
+print(Solution.evaluateTree(root2))  #imprime False porque 0 es false
