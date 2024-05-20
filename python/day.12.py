@@ -70,4 +70,20 @@ print(Solution().subsetXORSum([3, 4, 5, 6, 7, 8]))  # Salida: 480
 #[1] → XOR total: 1
 #[3] → XOR total: 3
 #[1, 3] → XOR total: 1 XOR 3 = 2
+
+#Para nums = [1, 3]:
+
+#Iniciamos con dfs(0, 0)
+#Primer elemento: 1
+#No incluir 1: dfs(1, 0)
+#Incluir 1: dfs(1, 1)
+#Segundo elemento: 3
+#No incluir 3: dfs(2, 0) y dfs(2, 1)
+#Incluir 3: dfs(2, 3) y dfs(2, 2)
+
+#dfs(2, 0): 0
+#dfs(2, 1): 1
+#dfs(2, 3): 3
+#dfs(2, 2): 2
+
 # 0 + 1 + 3 + 2 = 6.
