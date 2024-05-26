@@ -25,30 +25,51 @@ class Solution:
 
         # Continuamos mientras los índices estén dentro de los límites
         while i >= 0 and j >= 0 and k >= 0:
-         # Si los caracteres en la posición actual de las tres cadenas son iguales
+            # Si los caracteres en la posición actual de las tres cadenas son iguales
             if s1[i] == s2[j] == s3[k]:
-                #movemos los tres indices a la izquierda
+                # Mover los tres índices a la izquierda
                 i -= 1
                 j -= 1
                 k -= 1
             else:
                 # Si los caracteres no son iguales, eliminamos el carácter de una de las cadenas
-                #elegimos la cadena cuyos caracteres no coinciden
-                if s1[i] != s2[j]:
-                    if s1[i] != s3[k]:
-                        i -= 1 #eliminamos de s1
+                if s1[i] != s2[j] or s1[i] != s3[k] or s2[j] != s3[k]:
+                    # Elegimos la cadena cuyo carácter no coincide con los otros dos
+                    if s1[i] != s2[j]:
+                        if s1[i] != s3[k]:
+                            i -= 1  # Eliminamos de s1
+                        else:
+                            j -= 1  # Eliminamos de s2
                     else:
-                        j -= 1 #eliminamos de s2
+                        k -= 1  # Eliminamos de s3
+                    # Incrementamos las operaciones
+                    operations += 1
                 else:
-                    k -= 1 #eliminamos de s3
-                #incrementamos las operaciones
-                operations += 1
-        
-        # Si alguno de los índices es negativo, verificamos si es posible igualarlas
-        if i < 0 or j < 0 or k < 0:
-            # Si uno de los índices es negativo pero los otros no, no es posible igualarlas
-            if i >= 0 or j >= 0 or k >= 0:
+                    break
+    
+    
+        # Si hemos salido del bucle y aún quedan caracteres en alguna cadena
+        # hay que hacer una verificación adicional
+        while i >= 0 and (j >= 0 or k >= 0):
+            if (j >= 0 and s1[i] != s2[j]) or (k >= 0 and s1[i] != s3[k]):
                 return -1
+            i -= 1
+            j -= 1
+            k -= 1
+
+        while j >= 0 and (i >= 0 or k >= 0):
+            if (i >= 0 and s2[j] != s1[i]) or (k >= 0 and s2[j] != s3[k]):
+                return -1
+            i -= 1
+            j -= 1
+            k -= 1
+        
+        while k >= 0 and (i >= 0 or j >= 0):
+            if (i >= 0 and s3[k] != s1[i]) or (j >= 0 and s3[k] != s2[j]):
+                return -1
+            i -= 1
+            j -= 1
+            k -= 1
             
         #devolvemos el numero de operaciones realizadas
         return operations
