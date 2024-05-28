@@ -40,25 +40,27 @@ using namespace std;
 class Solution {
 public:
     int equalSubstring(string s, string t, int maxCost) {
-        //n: longitud de las cadenas s y t
+        //longitud de las cadenas s y t
         int n = s.size();
-        //maxLength: longitud máxima de la subcadena encontrada.
+        //longitud máxima de la subcadena encontrada.
         int maxLength = 0;
-        //currentCost: costo actual de cambiar la subcadena s[left...right] a t[left...right].
+        //costo actual de cambiar la subcadena 
         int currentCost = 0;
-        //left: índice de la izquierda de la ventana.
+        //índice de la izquierda de la ventana.
         int left = 0;
 
         for (int right = 0; right < n; right++)
         {   
+            // Agregar el costo de cambiar s[right] a t[right]
             currentCost += abs(s[right] - t[right]);
 
-            //Si currentCost excede maxCost, ajustamos la ventana deslizante moviendo 
+            //Si currentCost excede maxCost, ajustamos la ventana moviendo 
             //left hacia la derecha hasta que currentCost sea menor o igual a maxCost.
             while (currentCost > maxCost)
             {
+                // Reducir el costo quitando el carácter s[left]
                 currentCost -= abs(s[left] - t[left]);
-                left++;
+                left++; // Mover la izquierda de la ventana
             }
 
             maxLength = max(maxLength, right - left + 1);
