@@ -53,17 +53,25 @@ public:
 
         // Iterar sobre cada carácter en la cadena
         for (char c : s) {
+            cout << "Adding character " << c << " to row " << currRow << endl;
             rows[currRow] += c; //anadir el caracter a la fila actual
 
             // Cambiar de dirección si estamos en la primera o última fila
-            if (currRow == 0 || currRow == numRows - 1) goingDown = !goingDown;
+            if (currRow == 0 || currRow == numRows - 1) {
+                goingDown = !goingDown;
+                cout << "Changing direction: " << (goingDown ? "down" : "up") << endl;
+            }
             //mover a la siguiente fila
             currRow += goingDown ? 1 : -1;
+            cout << currRow << endl;
         }
 
         // Concatenar todas las filas para obtener la cadena resultante
         string result;
-        for (string row : rows) result += row;
+        for (int i = 0; i < rows.size(); ++i) {
+            cout << "Row " << i << ": " << rows[i] << endl;
+            result += rows[i];
+        }
 
         return result;
     }
@@ -71,7 +79,12 @@ public:
 
 int main()
 {
-    std::cout<<"Hello World";
+    Solution solution;
+    
+    string s1 = "PAYPALISHIRING";
+    int numRows1 = 3;
+    cout << "Entrada: s = \"" << s1 << "\", numRows = " << numRows1 << endl;
+    cout << "Salida: \"" << solution.convert(s1, numRows1) << "\"" << endl;
 
     return 0;
 }
