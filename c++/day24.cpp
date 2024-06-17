@@ -26,24 +26,35 @@ public:
         int rev = 0;
         while (x != 0)
         {
-            //Extraemos el último dígito (pop) usando el operador %.
+            // Extraemos el último dígito (pop) usando el operador %.
             int pop = x % 10;
-            //Eliminamos el último dígito de x dividiéndolo por 10.
-            x /= 10
+            // Eliminamos el último dígito de x dividiéndolo por 10.
+            x /= 10;
 
             // Verificar desbordamiento antes de agregar el dígito
             if (rev > INT_MAX / 10 || (rev == INT_MAX / 10 && pop > 7))
             {
                 return 0;
             }
-            if (rev < INT_MIN / 10 || (rev == INT_MIN / 10 && pop > -8))
+            if (rev < INT_MIN / 10 || (rev == INT_MIN / 10 && pop < -8))
             {
                 return 0;
             }
 
+            // Actualizamos el número invertido
             rev = rev * 10 + pop;
-        }
 
+            // Debug output para ver el proceso paso a paso
+            std::cout << "Pop: " << pop << ", Rev: " << rev << ", x: " << x << std::endl;
+        }
         return rev;
     }
 };
+
+int main(int argc, const char** argv) {
+    Solution solution;
+
+    int test2 = 123;
+        std::cout << "Entrada: " << test1 << ", Salida: " << solution.reverse(test1) << std::endl;
+    return 0;
+}
