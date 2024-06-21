@@ -39,6 +39,10 @@ public:
             while (left < right)
             {
                 int current_sum = nums[i] + nums[left] + nums[right];
+
+                cout << "Probando combinación: " << nums[i] << ", " << nums[left] << ", " << nums[right] 
+                     << " con suma = " << current_sum << endl;
+
                 // Actualizar closest_sum si current_sum está más cerca del target
                 if (abs(current_sum - target) < abs(closest_sum - target))
                 {
@@ -59,3 +63,16 @@ public:
         return closest_sum;
     }
 };
+
+int main() {
+    Solution solution;
+    vector<int> nums1 = {-1, 2, 1, -4};
+    int target1 = 1;
+    cout << "Resultado: " << solution.threeSumClosest(nums1, target1) << endl;
+    
+    vector<int> nums2 = {0, 0, 0};
+    int target2 = 1;
+    cout << "Resultado: " << solution.threeSumClosest(nums2, target2) << endl;
+    
+    return 0;
+}
