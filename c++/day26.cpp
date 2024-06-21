@@ -44,12 +44,16 @@ public:
                      << " con suma = " << current_sum << endl;
 
                 // Actualizar closest_sum si current_sum está más cerca del target
+                //Durante la iteración, actualizamos closest_sum si encontramos una 
+                //suma que esté más cerca del target que la anterior.
                 if (abs(current_sum - target) < abs(closest_sum - target))
                 {
                     closest_sum = current_sum;
                 }
 
                 // Mover los punteros dependiendo de la comparación con el target
+                //Dependiendo de si la suma actual es mayor o menor que el target, 
+                //movemos los punteros para intentar acercarnos más al target.
                 if (current_sum < target)
                 {
                     ++left;
