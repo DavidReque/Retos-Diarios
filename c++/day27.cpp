@@ -35,6 +35,10 @@ public:
             int currentArea = currentHeight * currentWidth;
             maxArea = max(maxArea, currentArea);
 
+            / Mostrar el progreso actual
+            cout << "Comparando líneas: " << left << " (" << height[left] << ") y " 
+                 << right << " (" << height[right] << ") -> área = " << current_area << endl;
+
              // Mover el puntero que apunta a la línea más corta
              // Actualizar maxArea si el área actual es mayor
              if (height[left] < height[right])
@@ -49,3 +53,14 @@ public:
         return maxArea;
     }
 };
+
+int main() {
+    Solution solution;
+    vector<int> height1 = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+    cout << "Área máxima: " << solution.maxArea(height1) << endl;
+
+    vector<int> height2 = {1, 1};
+    cout << "Área máxima: " << solution.maxArea(height2) << endl;
+
+    return 0;
+}
