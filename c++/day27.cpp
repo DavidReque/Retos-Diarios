@@ -35,7 +35,7 @@ public:
             int currentArea = currentHeight * currentWidth;
             maxArea = max(maxArea, currentArea);
 
-            / Mostrar el progreso actual
+            // Mostrar el progreso actual
             cout << "Comparando líneas: " << left << " (" << height[left] << ") y " 
                  << right << " (" << height[right] << ") -> área = " << current_area << endl;
 
