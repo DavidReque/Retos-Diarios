@@ -27,10 +27,13 @@ function intToRoman(num: number): string {
     const symbols: string[] = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"];
     let result: string = "";
 
+    // Continúa mientras haya elementos en el array y num sea mayor que 0
     for (let i = 0; i < values.length && num > 0; i++) {
+        // num mayor o igual al array de values
         while (num >= values[i]) {
+            // restamos el valor de la entrada (num) con values[i]
             num -= values[i];
-            result = symbols[i];
+            result += symbols[i];
         }
     }
 
