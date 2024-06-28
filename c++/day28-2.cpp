@@ -39,6 +39,7 @@ public:
             if (nums[i] > 0) break;
 
             // Evitar duplicados para el primer número
+            // Si el número actual es igual al anterior, lo saltamos.
             if (i > 0 && nums[i] == nums[i-1]) continue;
 
             // Usar dos punteros para los otros dos números
@@ -55,7 +56,9 @@ public:
                     result.push_back({nums[i], nums[left], nums[right]});
 
                     // Evitar duplicados para el segundo y tercer numero
+                    // Para left avanzamos mientras el siguiente número sea igual al actual
                     while (left < right && nums[left] == nums[left+1]) left++;
+                    // Para left avanzamos mientras el siguiente número sea igual al actual
                     while (left < right && nums[right] == nums[right-1]) right--;
 
                     left++;
